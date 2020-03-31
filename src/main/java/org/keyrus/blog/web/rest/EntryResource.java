@@ -3,6 +3,7 @@ package org.keyrus.blog.web.rest;
 import org.keyrus.blog.domain.Entry;
 import org.keyrus.blog.repository.EntryRepository;
 import org.keyrus.blog.repository.search.EntrySearchRepository;
+import org.keyrus.blog.security.SecurityUtils;
 import org.keyrus.blog.web.rest.errors.BadRequestAlertException;
 
 import io.github.jhipster.web.util.HeaderUtil;
@@ -110,7 +111,7 @@ public class EntryResource {
         if (eagerload) {
             page = entryRepository.findAllWithEagerRelationships(pageable);
         } else {
-            page = entryRepository.findAll(pageable);
+        	page = entryRepository.findByBlogUserLoginOrderByDateDesc(SecurityUtils.getCurrentUserLogin(), pageable);
         }
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
