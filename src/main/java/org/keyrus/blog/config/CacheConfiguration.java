@@ -43,6 +43,11 @@ public class CacheConfiguration {
             createCache(cm, org.keyrus.blog.domain.User.class.getName());
             createCache(cm, org.keyrus.blog.domain.Authority.class.getName());
             createCache(cm, org.keyrus.blog.domain.User.class.getName() + ".authorities");
+            createCache(cm, org.keyrus.blog.domain.Blog.class.getName());
+            createCache(cm, org.keyrus.blog.domain.Entry.class.getName());
+            createCache(cm, org.keyrus.blog.domain.Entry.class.getName() + ".tags");
+            createCache(cm, org.keyrus.blog.domain.Tag.class.getName());
+            createCache(cm, org.keyrus.blog.domain.Tag.class.getName() + ".entries");
             // jhipster-needle-ehcache-add-entry
         };
     }
