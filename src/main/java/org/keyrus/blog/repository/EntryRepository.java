@@ -28,4 +28,6 @@ public interface EntryRepository extends JpaRepository<Entry, Long> {
     Optional<Entry> findOneWithEagerRelationships(@Param("id") Long id);
 
 	Page<Entry> findByBlogUserLoginOrderByDateDesc(Optional<String> currentUserLogin, Pageable pageable);
+
+	Page<Entry> findByBlogUserLoginOrderByDateDesc(String orElse, Pageable pageable);
 }
